@@ -1,0 +1,55 @@
+S. No (Col.1),Category (Col.2),Crime Head (Col.3),Cases Pending Trial from the Previous Year (Col.4),Cases Sent for Trial during the year (Col.5),Total Cases for Trial (Col.6=Col.4+ Col.5),Cases Abated by Court (Col.7),Cases Withdrawn from Prosecution (Col.8),Cases Compounded or Compromised (Col.9),Cases Disposed off by Plea Bargaining (Col.10),Cases Quashed (Col.11),Cases Disposed off Without Trial (Col.12=Col.7+Col.8+Col.9+Col.10+Col.11),Cases Stayed or Sent to Record Room (Col.13),Cases Convicted Out of Cases from Previous Year (Col.14),Cases Convicted Out of Cases during the Year (Col.15),Cases Convicted (Col.16=Col.14+ Col.15),Cases Discharged (Col.17),Cases Acquitted (Col.18),Cases in which Trials were Completed (Col.19=Col.16+ Col.17+ Col.18),Cases Disposed off by Courts (Col.20=Col.12+ Col.19),Cases Pending Trial at End of the Year (Col.21=Col.6 - Col.20),Conviction Rate (Col.22=Col.16/ Col.19) *100,Pendency Percentage (Col.23=Col.21/ Col.6) *100
+1,IPC Crimes against Women,Murder with Rape/Gang Rape,500,224,724,1,0,0,0,0,1,0,14,16,30,1,18,49,50,674,61.2,93.1
+2,IPC Crimes against Women,Dowry Deaths,41374,6652,48026,4,0,40,8,3,55,7,1347,112,1459,237,1985,3681,3736,44290,39.6,92.2
+3,IPC Crimes against Women,Abetment to Suicide of Women,14728,4491,19219,7,2,23,4,29,65,3,357,50,407,111,2067,2585,2650,16569,15.7,86.2
+4,IPC Crimes against Women,Miscarriage,520,120,640,0,0,0,0,0,0,0,4,0,4,1,17,22,22,618,18.2,96.6
+5,IPC Crimes against Women,Acid Attack,317,100,417,0,0,1,0,0,1,0,16,1,17,0,9,26,27,390,65.4,93.5
+6,IPC Crimes against Women,Attempt to Acid Attack,80,26,106,0,0,0,0,0,0,0,2,0,2,0,3,5,5,101,40,95.3
+7,IPC Crimes against Women,Cruelty by Husband or his relatives,506552,82837,589389,121,120,9693,807,1190,11931,238,4481,501,4982,1586,31691,38259,50190,539199,13,91.5
+8,IPC Crimes against Women,Kidnapping and Abduction of Women - Total,140172,28529,168701,15,21,310,56,11,413,27,2636,441,3077,578,8255,11910,12323,156378,25.8,92.7
+8.1,IPC Crimes against Women,Kidnapping and Abduction,34077,9076,43153,4,1,65,3,4,77,6,487,48,535,118,1507,2160,2237,40916,24.8,94.8
+8.2,IPC Crimes against Women,Kidnapping and Abduction in order to Murder,503,79,582,0,0,0,0,0,0,0,3,1,4,0,5,9,9,573,44.4,98.5
+8.3,IPC Crimes against Women,Kidnapping for Ransom,452,56,508,0,0,0,0,0,0,0,3,1,4,2,12,18,18,490,22.2,96.5
+8.4,IPC Crimes against Women,Kidnapping and Abduction of Women to compel her for marriage,84077,15437,99514,8,18,234,45,6,311,19,1846,322,2168,318,5319,7805,8116,91398,27.8,91.8
+8.4.1,IPC Crimes against Women,Women,53496,8558,62054,6,15,98,36,2,157,13,1339,164,1503,181,3585,5269,5426,56628,28.5,91.3
+8.4.2,IPC Crimes against Women,Girls,30581,6879,37460,2,3,136,9,4,154,6,507,158,665,137,1734,2536,2690,34770,26.2,92.8
+8.5,IPC Crimes against Women,Procuration of Minor Girls,4539,1625,6164,2,0,0,0,0,2,1,83,14,97,0,634,731,733,5431,13.3,88.1
+8.6,IPC Crimes against Women,Importation of Girls from Foreign Country,196,1,197,0,0,0,0,0,0,0,0,0,0,0,6,6,6,191,0,97
+8.7,IPC Crimes against Women,Kidnapping and Abduction of Women – Others,16328,2255,18583,1,2,11,8,1,23,1,214,55,269,140,772,1181,1204,17379,22.8,93.5
+9,IPC Crimes against Women,Human Trafficking,1229,619,1848,0,0,0,0,0,0,0,31,20,51,11,98,160,160,1688,31.9,91.3
+10,IPC Crimes against Women,Selling of Minor Girls,517,37,554,0,0,0,0,0,0,0,4,0,4,0,6,10,10,544,40,98.2
+11,IPC Crimes against Women,Buying of Minor Girls,41,2,43,0,0,0,0,0,0,0,1,1,2,0,2,4,4,39,50,90.7
+12,IPC Crimes against Women,Rape - Total,127858,28469,156327,50,17,209,38,58,372,45,4042,666,4708,1472,11133,17313,17685,138642,27.2,88.7
+12.1,IPC Crimes against Women,Women,106832,19693,126525,43,15,170,30,54,312,39,2776,456,3232,1099,8299,12630,12942,113583,25.6,89.8
+12.2,IPC Crimes against Women,Girls,21026,8776,29802,7,2,39,8,4,60,6,1266,210,1476,373,2834,4683,4743,25059,31.5,84.1
+13,IPC Crimes against Women,Attempt to Commit Rape - Total,11077,3116,14193,1,1,14,7,0,23,2,225,41,266,63,726,1055,1078,13115,25.2,92.4
+13.1,IPC Crimes against Women,Women,10337,2781,13118,1,1,13,7,0,22,2,195,19,214,47,652,913,935,12183,23.4,92.9
+13.2,IPC Crimes against Women,Girls,740,335,1075,0,0,1,0,0,1,0,30,22,52,16,74,142,143,932,36.6,86.7
+14,IPC Crimes against Women,Assault on Women with Intent to Outrage her Modesty - Total,309333,75101,384434,118,121,4044,514,214,5011,84,7694,1658,9352,1787,24253,35392,40403,344031,26.4,89.5
+14.1,IPC Crimes against Women,Women,294903,68244,363147,113,120,3831,457,210,4731,78,6780,1291,8071,1559,22758,32388,37119,326028,24.9,89.8
+14.2,IPC Crimes against Women,Girls,14430,6857,21287,5,1,213,57,4,280,6,914,367,1281,228,1495,3004,3284,18003,42.6,84.6
+15,IPC Crimes against Women,Insult to the Modesty of Women - Total,31858,6108,37966,17,2,1022,9,6,1056,18,439,76,515,161,2336,3012,4068,33898,17.1,89.3
+15.1,IPC Crimes against Women,Women,30567,5935,36502,17,2,991,8,6,1024,18,430,63,493,156,2306,2955,3979,32523,16.7,89.1
+15.2,IPC Crimes against Women,Girls,1291,173,1464,0,0,31,1,0,32,0,9,13,22,5,30,57,89,1375,38.6,93.9
+Total,IPC Crimes against Women,Total IPC Crimes against Women,1186156,236431,1422587,334,284,15356,1443,1511,18928,424,21293,3583,24876,6008,82599,113483,132411,1290176,21.9,90.7
+16,SLL Crimes against Women,Dowry Prohibition Act,36949,9598,46547,2,5,342,126,35,510,11,624,164,788,112,2374,3274,3784,42763,24.1,91.9
+17,SLL Crimes against Women,Immoral Traffic (Prevention) Act - Total,7857,1279,9136,3,2,20,0,0,25,13,204,95,299,6,549,854,879,8257,35,90.4
+17.1,SLL Crimes against Women,"Procuring, inducing Children for the sake of prostitution",2539,301,2840,1,2,10,0,0,13,1,29,5,34,1,125,160,173,2667,21.3,93.9
+17.2,SLL Crimes against Women,Detaining a person in premises where prostitution is carried on,400,151,551,0,0,6,0,0,6,0,21,2,23,0,65,88,94,457,26.1,82.9
+17.3,SLL Crimes against Women,Prostitution in or in the vicinity of public places,892,180,1072,1,0,3,0,0,4,1,49,2,51,0,39,90,94,978,56.7,91.2
+17.4,SLL Crimes against Women,Seducing or soliciting for purpose of prostitution,841,116,957,0,0,0,0,0,0,4,32,53,85,0,21,106,106,851,80.2,88.9
+17.5,SLL Crimes against Women,Other Sections under ITP Act,3185,531,3716,1,0,1,0,0,2,7,73,33,106,5,299,410,412,3304,25.9,88.9
+18,SLL Crimes against Women,Protection of Women from Domestic Violence Act,1313,471,1784,0,0,4,0,1,5,14,69,4,73,1,49,123,128,1656,59.3,92.8
+19,SLL Crimes against Women,Cyber Crimes/Information Technology Act - Total,312,453,765,0,0,10,0,2,12,0,4,1,5,3,24,32,44,721,15.6,94.2
+19.1,SLL Crimes against Women,Publishing or Transmitting of Sexually Explicit Material,175,340,515,0,0,3,0,0,3,0,2,1,3,3,13,19,22,493,15.8,95.7
+19.2,SLL Crimes against Women,Other Women Centric Cyber Crimes,137,113,250,0,0,7,0,2,9,0,2,0,2,0,11,13,22,228,15.4,91.2
+20,SLL Crimes against Women,Protection of Children from Sexual Violence Act - Total,82321,34736,117057,30,1,156,20,26,233,8,3161,644,3805,389,6985,11179,11412,105645,34,90.3
+20.1,SLL Crimes against Women,POCSO Act Section 4 & 6,51080,19544,70624,20,0,53,3,18,94,1,1835,345,2180,249,4465,6894,6988,63636,31.6,90.1
+20.2,SLL Crimes against Women,POCSO Act Section 8 & 10,26024,12497,38521,10,1,91,11,6,119,7,1172,277,1449,130,2109,3688,3807,34714,39.3,90.1
+20.3,SLL Crimes against Women,POCSO Act Section 12,1657,1424,3081,0,0,12,0,1,13,0,59,13,72,3,219,294,307,2774,24.5,90
+20.4,SLL Crimes against Women,POCSO Act Section 14 & 15,985,539,1524,0,0,0,0,0,0,0,45,1,46,0,22,68,68,1456,67.6,95.5
+20.5,SLL Crimes against Women,"POCSO Act Section 17,18,19",2364,679,3043,0,0,0,6,1,7,0,37,4,41,7,164,212,219,2824,19.3,92.8
+20.6,SLL Crimes against Women,POCSO Act r/w Section 377 IPC,211,53,264,0,0,0,0,0,0,0,13,4,17,0,6,23,23,241,73.9,91.3
+21,SLL Crimes against Women,Indecent Representation of Women (Prohibition) Act,585,10,595,0,0,0,0,0,0,0,10,0,10,2,28,40,40,555,25,93.3
+Total,SLL Crimes against Women,Total SLL Crimes against Women,129337,46547,175884,35,8,532,146,64,785,46,4072,908,4980,513,10009,15502,16287,159597,32.1,90.7
+Grand Total,Total Crime against Women,Total Crime against Women,1315493,282978,1598471,369,292,15888,1589,1575,19713,470,25365,4491,29856,6521,92608,128985,148698,1449773,23.1,90.7

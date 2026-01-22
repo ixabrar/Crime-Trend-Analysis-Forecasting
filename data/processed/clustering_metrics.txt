@@ -1,0 +1,7 @@
+KMeans Clustering Validation Metrics
+==================================================
+
+n_clusters: 4
+silhouette_score: 0.6177066842941126
+inertia: 19.46228206162941
+n_states: 69

@@ -1,0 +1,70 @@
+Si. No. (Col. 1),Crime Head (Col. 2),Cases Pending Investigation from Previous Year - (Col. 3),Cases Reported during the year - (Col. 4),Cases Reopened for Investigation - (Col. 5),Total Cases for Investigation (Col.3+Col.4+Col.5) - (Col. 6),Cases Not Investigated Under 157_1_b CRPC - (Col. 7),Cases Transferred to Other State or Agency - (Col. 8),Cases Withdrawn by the Govt during Investigation - (Col. 9),Final Report - Cases Ended as FR Non Cognizable - (Col. 10),Final Report - Cases Ended as Final Report False - (Col. 11),Final Report - Cases Ended as Mistake of Fact or of law or Civil Dispute - (Col. 12),Final Report - Cases True but Insufficient Evidence or Untraced or No Clue - (Col. 13),Final Report - Cases Abated during Investigation - (Col. 14),Final Report - Total (Col.10+Col.11+Col.12+Col13+Col.14) - (Col. 15),Charge Sheets Submitted - Cases ChargeSheeted Out of cases frm prv. Year - (Col. 16),Charge Sheets Submitted - Cases Chargesheeted Out of Cases during the year - (Col. 17),Charge Sheets Submitted - Cases Chargesheeted (Col.16+Col.17) - (Col. 18),Total Cases Disposed Off by Police (Col.7+8+15+18) - (Col. 19),Cases Quashed at Investigation Stage - (Col. 20),Cases Stayed at Investigation Stage - (Col. 21),Cases Pending Invsgn.at end of the year (Cols.6-9-19-20) - (Col. 22),Chargesheeting Rate (Col.18/19*100) - (Col. 23),Pendency Percentage (Col.22/6*100) - (Col. 24)
+1,Murder,929,1420,0,2349,0,4,0,0,17,16,72,68,173,258,908,1166,1343,0,0,1006,86.8,42.8
+1.1,Murder with Rape/POCSO,74,115,0,189,0,2,0,0,0,3,3,0,6,21,83,104,112,0,0,77,92.9,40.7
+1.2,Other Murder,855,1305,0,2160,0,2,0,0,17,13,69,68,167,237,825,1062,1231,0,0,929,86.3,43
+2,Abetment of Suicide of Child,148,281,0,429,0,0,0,0,2,4,6,0,12,54,187,241,253,0,0,176,95.3,41
+3,Attempt to Commit Murder,310,336,0,646,0,1,0,0,8,6,7,1,22,108,223,331,354,1,0,291,93.5,45
+4,Infanticide,71,79,0,150,0,0,0,1,0,3,26,1,31,12,15,27,58,0,0,92,46.6,61.3
+5,Foeticide,58,109,0,167,0,0,0,0,6,1,45,2,54,1,17,18,72,0,0,95,25,56.9
+6,Exposure and Abandonment,608,747,0,1355,0,0,0,0,12,20,601,1,634,48,86,134,768,0,0,587,17.4,43.3
+7,Simple Hurt,957,3255,0,4212,0,1,0,32,42,35,85,0,194,365,2509,2874,3069,4,1,1139,93.6,27
+8,Grievous Hurt,362,631,0,993,0,0,0,16,11,9,39,0,75,178,437,615,690,0,0,303,89.1,30.5
+9,Kidnapping and Abduction of Children,44400,54785,8,99193,0,29,8,93,8912,20302,7903,261,37471,5883,12467,18350,55850,52,14,43283,32.9,43.6
+9.1,Kidnapping and Abduction,30101,37501,6,67608,0,26,7,88,6405,17062,5420,194,29169,2963,6464,9427,38622,50,2,28929,24.4,42.8
+9.1.1,Missing Children Deemed as Kidnapped,14917,21248,3,36168,0,16,7,75,4468,10425,2712,127,17807,1293,2874,4167,21990,17,0,14154,18.9,39.1
+9.1.2,Other Kidnapping & Abduction,15184,16253,3,31440,0,10,0,13,1937,6637,2708,67,11362,1670,3590,5260,16632,33,2,14775,31.6,47
+9.2,Kidnapping and Abduction for the Purpose of Begging,34,44,0,78,0,0,0,0,3,1,14,5,23,5,8,13,36,0,0,42,36.1,53.8
+9.3,Kidnapping and Abduction in order to Murder,65,56,0,121,0,0,0,0,4,8,13,0,25,14,30,44,69,0,0,52,63.8,43
+9.4,Kidnapping for Ransom,107,77,0,184,0,0,0,0,3,3,12,0,18,15,54,69,87,0,0,97,79.3,52.7
+9.5,Kidnapping and Abduction of Minor Girls to compel her for marriage,9136,11051,1,20188,0,1,1,4,1339,2105,1880,5,5333,2011,3796,5807,11141,2,12,9044,52.1,44.8
+9.6,Procuration of Minor Girls,2881,2471,1,5353,0,1,0,0,627,277,327,9,1240,478,703,1181,2422,0,0,2931,48.8,54.8
+9.7,Importation of Girls from Foreign Country,5,0,0,5,0,0,0,0,0,0,0,0,0,4,0,4,4,0,0,1,100,20
+9.8,Other Kidnapping & Abducion,2071,3585,0,5656,0,1,0,1,531,846,237,48,1663,393,1412,1805,3469,0,0,2187,52,38.7
+10,Human Trafficking,523,348,1,872,0,0,0,0,3,14,20,0,37,194,168,362,399,0,0,473,90.7,54.2
+11,Selling of Minors for Prostitution,82,14,0,96,0,0,0,0,1,1,5,0,7,8,6,14,21,0,0,75,66.7,78.1
+11.1,Boys,7,2,0,9,0,0,0,0,0,0,5,0,5,0,1,1,6,0,0,3,16.7,33.3
+11.2,Girls,75,12,0,87,0,0,0,0,1,1,0,0,2,8,5,13,15,0,0,72,86.7,82.8
+12,Buying of Minors for Prostitution,27,1,0,28,0,0,0,0,0,2,0,0,2,6,1,7,9,0,0,19,77.8,67.9
+12.1,Boys,2,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,NA,100
+12.2,Girls,25,1,0,26,0,0,0,0,0,2,0,0,2,6,1,7,9,0,0,17,77.8,65.4
+13,Rape,2801,2640,0,5441,0,5,0,0,325,61,52,2,440,1503,1711,3214,3659,1,0,1781,87.8,32.7
+14,Attempt to Commit Rape,240,295,1,536,0,0,0,0,36,3,20,3,62,84,178,262,324,0,1,212,80.9,39.6
+15,Assault on Women with Intent to Outrage her Modesty,1771,4110,5,5886,0,0,0,2,319,68,170,25,584,965,2581,3546,4130,2,1,1754,85.9,29.8
+16,Insult to the Modesty of Women,120,132,0,252,0,0,0,0,8,15,7,0,30,34,81,115,145,0,0,107,79.3,42.5
+17,Other IPC Crimes,6705,8199,43,14947,0,0,0,7,667,208,886,30,1798,1487,4868,6355,8153,1,1,6793,77.9,45.4
+Total IPC Crimes against Children,Total IPC Crimes against Children,60112,77382,58,137552,0,40,8,151,10369,20768,9944,394,41626,11188,26443,37631,79297,61,18,58186,47.5,42.3
+18,Protection of Children from Sexual Offences Act.,19129,47221,43,66393,2,87,2,35,787,454,1100,54,2430,9955,34754,44709,47228,20,5,19143,94.7,28.8
+18.1,Section 4 & 6 of POCSO Act or POCSO Act ( Section 4 & 6) r/w Section 376 IPC,9916,28065,41,38022,2,78,1,19,315,133,428,30,925,5644,20864,26508,27513,11,2,10497,96.3,27.6
+18.1.1A,Girls,9852,27807,36,37695,2,78,1,19,299,132,424,30,904,5612,20674,26286,27270,11,2,10413,96.4,27.6
+18.1.1B,Boys,64,258,5,327,0,0,0,0,16,1,4,0,21,32,190,222,243,0,0,84,91.4,25.7
+18.2,Section 8 & 10 of POCSO Act or POCSO Act (Section 8 & 10) r/w Section 354 IPC,6790,15692,1,22483,0,7,0,13,309,239,532,21,1114,3276,11757,15033,16154,4,1,6325,93.1,28.1
+18.2.1A,Girls,6622,15515,1,22138,0,6,0,13,301,236,524,21,1095,3154,11666,14820,15921,4,1,6213,93.1,28.1
+18.2.1B,Boys,168,177,0,345,0,1,0,0,8,3,8,0,19,122,91,213,233,0,0,112,91.4,32.5
+18.3,Section 12 of POCSO Act or POCSO Act (Section 12) r/w Section 509 IPC,1027,1672,1,2700,0,2,1,2,77,36,47,0,162,457,1065,1522,1686,5,1,1008,90.3,37.3
+18.3.1A,Girls,993,1628,1,2622,0,2,1,2,74,36,44,0,156,438,1039,1477,1635,5,1,981,90.3,37.4
+18.3.1B,Boys,34,44,0,78,0,0,0,0,3,0,3,0,6,19,26,45,51,0,0,27,88.2,34.6
+18.4,Section 14 & 15 of POCSO Act,673,584,0,1257,0,0,0,0,14,33,14,0,61,250,287,537,598,0,0,659,89.8,52.4
+18.4.1A,Girls,647,553,0,1200,0,0,0,0,14,33,11,0,58,238,272,510,568,0,0,632,89.8,52.7
+18.4.1B,Boys,26,31,0,57,0,0,0,0,0,0,3,0,3,12,15,27,30,0,0,27,90,47.4
+18.5,POCSO Act r/w Section 377 IPC,433,600,0,1033,0,0,0,0,12,1,22,2,37,173,406,579,616,0,0,417,94,40.4
+18.5.1A,Girls,109,27,0,136,0,0,0,0,1,1,5,0,7,12,17,29,36,0,0,100,80.6,73.5
+18.5.1B,Boys,324,573,0,897,0,0,0,0,11,0,17,2,30,161,389,550,580,0,0,317,94.8,35.3
+18.6,Sections 17 to 22 of POCSO Act,290,608,0,898,0,0,0,1,60,12,57,1,131,155,375,530,661,0,1,237,80.2,26.4
+18.6.1A,Girls,282,593,0,875,0,0,0,1,58,12,57,1,129,153,366,519,648,0,1,227,80.1,25.9
+18.6.1B,Boys,8,15,0,23,0,0,0,0,2,0,0,0,2,2,9,11,13,0,0,10,84.6,43.5
+19,Juvenile Justice (Care and Protection of Children) Act,1012,1713,3,2728,0,3,0,0,34,39,67,0,140,302,1216,1518,1661,0,1,1067,91.4,39.1
+19.1,Offences by Care Takers/In-charge of Juvenile Homes,167,322,2,491,0,0,0,0,5,3,25,0,33,61,248,309,342,0,1,149,90.4,30.3
+19.2,Other Offences,845,1391,1,2237,0,3,0,0,29,36,42,0,107,241,968,1209,1319,0,0,918,91.7,41
+20,Immoral Traffic (Prevention) Act,81,28,0,109,0,0,0,0,0,0,0,0,0,6,14,20,20,2,0,87,100,79.8
+20.1,"Procuring, inducing Children for the sake of prostitution",45,16,0,61,0,0,0,0,0,0,0,0,0,3,9,12,12,0,0,49,100,80.3
+20.2,Detaining a person in premises where prostitution is carried on,1,1,0,2,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,100,50
+20.3,Others,35,11,0,46,0,0,0,0,0,0,0,0,0,3,4,7,7,2,0,37,100,80.4
+21,Child Labour (Prohibition & Regulation) Act,374,476,0,850,0,0,0,0,6,12,39,2,59,103,323,426,485,0,0,365,87.8,42.9
+22,Prohibition of Child Marriage Act,389,785,0,1174,0,11,0,0,32,35,27,3,97,175,330,505,613,1,0,560,82.4,47.7
+23,Transplantation of Human Organs Act,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NA,NA
+24,Cyber Crimes/Information Technology Act,222,842,3,1067,0,7,0,0,14,3,103,3,123,36,284,320,450,0,0,617,71.1,57.8
+24.1,Publishing or Transmitting of material depicting children in sexually explicit act,96,738,3,837,0,7,0,0,13,2,94,3,112,18,254,272,391,0,0,446,69.6,53.3
+24.2,Other Cyber Crimes against Children,126,104,0,230,0,0,0,0,1,1,9,0,11,18,30,48,59,0,0,171,81.4,74.3
+25,Other SLL crimes,189,84,3,276,0,0,0,0,6,1,3,0,10,24,32,56,66,0,0,210,84.8,76.1
+Total SLL Crimes,Total SLL Crimes,21396,51149,52,72597,2,108,2,35,879,544,1339,62,2859,10601,36953,47554,50523,23,6,22049,94.1,30.4
+Total Crimes against Children,Total Crimes against Children,81508,128531,110,210149,2,148,10,186,11248,21312,11283,456,44485,21789,63396,85185,129820,84,24,80235,65.6,38.2
