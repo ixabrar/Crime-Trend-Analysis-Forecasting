@@ -1,4 +1,4 @@
-"""
+""""
 Crime Pattern Analysis Dashboard
 
 A Streamlit-based visualization dashboard for exploring crime trends 
@@ -24,6 +24,15 @@ import pickle
 import plotly.graph_objects as go
 import plotly.express as px
 from pathlib import Path
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+
+import plotly.graph_objects as go
+import plotly.express as px
 
 
 # ========================
@@ -428,25 +437,39 @@ def tab_women_crime():
             key='women_crime_select'
         )
         
-        # Aggregate by state
-        state_crime = women_crime.groupby('state_ut')[selected_crime].sum().sort_values(ascending=False).head(10)
-        
+        # User-selectable state for district bar chart
+        st.markdown("**Top 10 Districts by Crime Type (State Filter)**")
+        state_options = ['All India'] + sorted(women_crime['state_ut'].dropna().unique())
+        selected_state = st.selectbox(
+            "Select State/UT for District Ranking:",
+            options=state_options,
+            key='women_district_state_select',
+            index=state_options.index('All India') if 'All India' in state_options else 0
+        )
+
+        if selected_state == 'All India':
+            district_crime = women_crime.groupby('district')[selected_crime].sum().sort_values(ascending=False).head(10)
+        else:
+            district_crime = women_crime[women_crime['state_ut'] == selected_state].groupby('district')[selected_crime].sum().sort_values(ascending=False).head(10)
+
         fig_bar = go.Figure(data=[go.Bar(
-            x=state_crime.values,
-            y=state_crime.index,
+            x=district_crime.values,
+            y=district_crime.index,
             orientation='h',
             marker=dict(color='#e74c3c', line=dict(color='#c0392b', width=1))
         )])
-        
+
         fig_bar.update_layout(
-            title=f"Top 10 States: {selected_crime.replace('_', ' ').title()} (2001-2014)",
+            title=f"Top 10 Districts in {selected_state}: {selected_crime.replace('_', ' ').title()} (2001-2014)",
             xaxis_title="Total Cases",
-            yaxis_title="State/UT",
+            yaxis_title="District",
             template="plotly_white",
             height=500
         )
-        
+
         st.plotly_chart(fig_bar, use_container_width=True)
+
+       
     
     # Trend Analysis
     with st.expander("📊 View Proportion Trend"):
@@ -619,7 +642,6 @@ def tab_children_crime():
     
     with sub_tab3:
         st.markdown("**Top 10 States by Crime Type**")
-        
         # Select crime type
         selected_crime = st.selectbox(
             "Select Crime Type:",
@@ -627,17 +649,14 @@ def tab_children_crime():
             format_func=lambda x: x.replace('_', ' ').title(),
             key='children_crime_select'
         )
-        
         # Aggregate by state
         state_crime = children_crime.groupby('state_ut')[selected_crime].sum().sort_values(ascending=False).head(10)
-        
         fig_bar = go.Figure(data=[go.Bar(
             x=state_crime.values,
             y=state_crime.index,
             orientation='h',
             marker=dict(color='#3498db', line=dict(color='#2980b9', width=1))
         )])
-        
         fig_bar.update_layout(
             title=f"Top 10 States: {selected_crime.replace('_', ' ').title()} (2001-2013)",
             xaxis_title="Total Cases",
@@ -645,9 +664,37 @@ def tab_children_crime():
             template="plotly_white",
             height=500
         )
-        
         st.plotly_chart(fig_bar, use_container_width=True)
-    
+
+        # User-selectable state for district bar chart
+        st.markdown("**Top 10 Districts by Crime Type (State Filter)**")
+        state_options = ['All India'] + sorted(children_crime['state_ut'].dropna().unique())
+        selected_state = st.selectbox(
+            "Select State/UT for District Ranking:",
+            options=state_options,
+            key='children_district_state_select',
+            index=state_options.index('All India') if 'All India' in state_options else 0
+        )
+
+        if selected_state == 'All India':
+            district_crime = children_crime.groupby('district')[selected_crime].sum().sort_values(ascending=False).head(10)
+        else:
+            district_crime = children_crime[children_crime['state_ut'] == selected_state].groupby('district')[selected_crime].sum().sort_values(ascending=False).head(10)
+
+        fig_bar2 = go.Figure(data=[go.Bar(
+            x=district_crime.values,
+            y=district_crime.index,
+            orientation='h',
+            marker=dict(color='#16a085', line=dict(color='#145a32', width=1))
+        )])
+        fig_bar2.update_layout(
+            title=f"Top 10 Districts in {selected_state}: {selected_crime.replace('_', ' ').title()} (2001-2013)",
+            xaxis_title="Total Cases",
+            yaxis_title="District",
+            template="plotly_white",
+            height=500
+        )
+        st.plotly_chart(fig_bar2, use_container_width=True)
     # Insights
     with st.expander("📊 View Detailed Statistics"):
         st.subheader("Forecast Summary (2014-2028)")
@@ -660,265 +707,195 @@ def tab_children_crime():
         st.dataframe(forecast_display, use_container_width=True)
 
 
-# ========================
-# Tab 4: Area Pattern (KMeans)
-# ========================
 
-def tab_area_pattern():
-    st.header("🗺️ State-Level Crime Pattern Clustering")
-    
-    st.markdown("""
-    This section uses **KMeans clustering** to group Indian states based on crime patterns (2001-2014).
-    
-    **Features used:**
-    - Total IPC Crimes
-    - Crimes Against Women
-    - Crimes Against Children
-    
-    **Note:** Clustering is performed offline. Models are loaded from disk.
-    """)
-    
-    # Load clustering data
-    clusters_df = load_clusters()
-    kmeans_info = load_kmeans_model()
-    
-    if clusters_df is None:
-        st.error("❌ Clustering data not found. Please run: `python models/kmeans_clustering.py`")
-        return
-    
-    # Sidebar: State selection
-    st.sidebar.subheader("🔍 Explore by State")
-    selected_state = st.sidebar.selectbox(
-        "Select a State/UT:",
-        options=sorted(clusters_df["state_ut"].unique())
+
+
+def area_tab_pattern():
+
+    st.set_page_config(page_title="District Crime Clustering", layout="wide")
+    st.title("District Crime Clustering with Real Coordinates")
+
+    # ------------------------------------------------------------------
+    # 1. Load Data
+    # ------------------------------------------------------------------
+    def load_crime_data():
+        return pd.read_csv("data/processed/core_crime/core_ipc_standardized.csv")
+
+    def load_latlong_data():
+        return pd.read_csv("archive/India Districts Latlongs.csv")
+
+    crime_df = load_crime_data()
+    latlong_df = load_latlong_data()
+
+    # ------------------------------------------------------------------
+    # 2. Preprocess and Merge Coordinates
+    # ------------------------------------------------------------------
+    def extract_district_state(place):
+        if pd.isna(place):
+            return "", ""
+        place = str(place)
+        tokens = [t.strip() for t in place.split(",")]
+        if len(tokens) >= 2:
+            state = tokens[-2]
+            district = tokens[-3] if len(tokens) >= 3 else tokens[0]
+            return district.upper(), state.upper()
+        return place.upper(), ""
+
+    latlong_df["district_key"] = latlong_df["Place Name"].apply(
+        lambda x: extract_district_state(x)[0]
     )
-    
-    # State Details
-    state_info = clusters_df[clusters_df["state_ut"] == selected_state].iloc[0]
-    
-    st.subheader(f"📍 {selected_state}")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.metric("Cluster ID", int(state_info["cluster"]))
-        st.metric("Cluster Category", state_info["cluster_description"])
-    
-    with col2:
-        st.metric("Total IPC Crimes (2001-2014)", f"{int(state_info['total_ipc_crimes']):,}")
-        st.metric("Women Crimes (2001-2014)", f"{int(state_info['total_women_crimes']):,}")
-    
-    # Modern Bubble Map - Clean & Zoomable to District Level
-    st.subheader("🗺️ India Crime Pattern Clusters - Interactive Bubble Map")
-    
-    # Define color mapping for clusters
-    cluster_colors = {
-        0: 'rgba(52, 168, 83, 0.6)',   # Green - Low Crime
-        1: 'rgba(251, 188, 5, 0.6)',   # Yellow - Medium-Low Crime
-        2: 'rgba(255, 109, 0, 0.6)',   # Orange - Medium-High Crime
-        3: 'rgba(234, 67, 53, 0.6)'    # Red - High Crime
-    }
-    
-    # Add color column to clusters_df
-    clusters_df['color'] = clusters_df['cluster'].map(cluster_colors)
-    
-    # Load district-level data for granularity
-    core_ipc_full = load_processed_data()[0]
-    
-    # Aggregate at district level for detailed zoom
-    district_data = core_ipc_full.groupby(['state_ut', 'district'], as_index=False).agg({
-        'total_ipc_crimes': 'sum'
-    })
-    
-    # Merge with cluster info
-    district_data = district_data.merge(
-        clusters_df[['state_ut', 'cluster', 'cluster_description', 'color']],
-        on='state_ut',
-        how='left'
+    latlong_df["state_key"] = latlong_df["Place Name"].apply(
+        lambda x: extract_district_state(x)[1]
     )
-    
-    # District coordinates (approximate - for major districts)
-    district_coords = {}
-    
-    # Add state-level fallback coordinates
-    state_coords = {
-        'Andhra Pradesh': (15.9129, 79.7400), 'Arunachal Pradesh': (28.2180, 94.7278),
-        'Assam': (26.2006, 92.9376), 'Bihar': (25.0961, 85.3131),
-        'Chhattisgarh': (21.2787, 81.8661), 'Goa': (15.2993, 74.1240),
-        'Gujarat': (22.2587, 71.1924), 'Haryana': (29.0588, 76.0856),
-        'Himachal Pradesh': (31.1048, 77.1734), 'Jharkhand': (23.6102, 85.2799),
-        'Karnataka': (15.3173, 75.7139), 'Kerala': (10.8505, 76.2711),
-        'Madhya Pradesh': (22.9734, 78.6569), 'Maharashtra': (19.7515, 75.7139),
-        'Manipur': (24.6637, 93.9063), 'Meghalaya': (25.4670, 91.3662),
-        'Mizoram': (23.1645, 92.9376), 'Nagaland': (26.1584, 94.5624),
-        'Odisha': (20.9517, 85.0985), 'Punjab': (31.1471, 75.3412),
-        'Rajasthan': (27.0238, 74.2179), 'Sikkim': (27.5330, 88.5122),
-        'Tamil Nadu': (11.1271, 78.6569), 'Telangana': (18.1124, 79.0193),
-        'Tripura': (23.9408, 91.9882), 'Uttar Pradesh': (26.8467, 80.9462),
-        'Uttarakhand': (30.0668, 79.0193), 'West Bengal': (22.9868, 87.8550),
-        'Andaman & Nicobar Islands': (11.7401, 92.6586), 'Chandigarh': (30.7333, 76.7794),
-        'Dadra & Nagar Haveli': (20.1809, 73.0169), 'Daman & Diu': (20.4283, 72.8397),
-        'Delhi': (28.7041, 77.1025), 'Jammu & Kashmir': (33.7782, 76.5762),
-        'Lakshadweep': (10.5667, 72.6417), 'Puducherry': (11.9416, 79.8083)
-    }
-    
-    # Assign coordinates (use state coords + small offset for districts)
-    import numpy as np
-    np.random.seed(42)
-    
-    district_data['lat'] = district_data['state_ut'].map(lambda x: state_coords.get(x, (20, 78))[0])
-    district_data['lon'] = district_data['state_ut'].map(lambda x: state_coords.get(x, (20, 78))[1])
-    
-    # Add small random offset for districts within same state
-    district_data['lat'] = district_data['lat'] + np.random.uniform(-0.5, 0.5, len(district_data))
-    district_data['lon'] = district_data['lon'] + np.random.uniform(-0.5, 0.5, len(district_data))
-    
-    # Calculate bubble size (proportional to crime)
-    district_data['bubble_size'] = np.sqrt(district_data['total_ipc_crimes']) / 10
-    district_data['bubble_size'] = district_data['bubble_size'].clip(5, 60)  # Min-max size
-    
-    # Create bubble map
-    fig_bubble = go.Figure()
-    
-    # Color mapping
-    color_map = {
-        'Low Crime Intensity': 'rgba(184, 230, 184, 0.6)',
-        'Medium-Low Crime Intensity': 'rgba(255, 230, 109, 0.6)',
-        'Medium-High Crime Intensity': 'rgba(255, 140, 66, 0.6)',
-        'High Crime Intensity': 'rgba(255, 51, 102, 0.7)'
-    }
-    
-    for cluster in district_data['cluster_description'].unique():
-        if pd.isna(cluster):
-            continue
-            
-        cluster_data = district_data[district_data['cluster_description'] == cluster]
-        
-        fig_bubble.add_trace(go.Scattermapbox(
-            lat=cluster_data['lat'],
-            lon=cluster_data['lon'],
-            mode='markers',
-            marker=dict(
-                size=cluster_data['bubble_size'],
-                color=color_map.get(cluster, 'rgba(150, 150, 150, 0.6)'),
-                sizemode='diameter',
-                opacity=0.7
-            ),
-            text=cluster_data['district'],
-            customdata=cluster_data[['state_ut', 'total_ipc_crimes']],
-            hovertemplate=(
-                '<b>%{text}</b><br>' +
-                '<b>State:</b> %{customdata[0]}<br>' +
-                '<b>Total Crimes:</b> %{customdata[1]:,.0f}<br>' +
-                '<extra></extra>'
-            ),
-            name=cluster,
-            showlegend=True
-        ))
-    
-    # Update layout with clean, minimal style
-    fig_bubble.update_layout(
+
+    crime_df["district_key"] = (
+        crime_df["district"]
+        .str.upper()
+        .str.replace(" DISTRICT", "")
+        .str.replace(" ", "")
+    )
+    crime_df["state_key"] = crime_df["state_ut"].str.upper().str.replace(" ", "")
+
+    latlong_df["district_key"] = latlong_df["district_key"].str.replace(" ", "")
+    latlong_df["state_key"] = latlong_df["state_key"].str.replace(" ", "")
+
+    merged = pd.merge(
+        crime_df,
+        latlong_df,
+        how="left",
+        left_on=["district_key", "state_key"],
+        right_on=["district_key", "state_key"],
+    )
+
+    # ------------------------------------------------------------------
+    # 3. Aggregate by District
+    # ------------------------------------------------------------------
+    district_agg = (
+        merged.groupby(["state_ut", "district", "Latitude", "Longitude"])
+        .agg(
+            {
+                "total_ipc_crimes": "sum",
+                "murder": "sum",
+                "rape": "sum",
+                "robbery": "sum",
+            }
+        )
+        .reset_index()
+    )
+
+    # ------------------------------------------------------------------
+    # 4. KMeans Clustering
+    # ------------------------------------------------------------------
+    st.sidebar.header("KMeans Clustering Settings")
+    n_clusters = st.sidebar.slider("Number of Clusters", 2, 8, 4)
+
+    features = ["total_ipc_crimes", "murder", "rape", "robbery"]
+    scaler = StandardScaler()
+    X = scaler.fit_transform(district_agg[features])
+
+    kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+    labels = kmeans.fit_predict(X)
+    district_agg["cluster"] = labels
+
+    # ------------------------------------------------------------------
+    # 5. Cluster Quality (Silhouette Score)
+    # ------------------------------------------------------------------
+    if len(set(labels)) > 1:
+        sil_score = silhouette_score(X, labels)
+        st.sidebar.success(f"Silhouette Score: {sil_score:.3f}")
+    else:
+        st.sidebar.warning("Only one cluster found. Silhouette score unavailable.")
+
+    # ------------------------------------------------------------------
+    # 6. Visualization – Bubble Map (Green → Red)
+    # ------------------------------------------------------------------
+    st.subheader("District Crime Clusters (Bubble Map)")
+
+    # Green → Red (8 transitions)
+    green_to_red_8 = [
+        "rgba(0, 255, 0, 0.55)",     # Bright Green
+        "rgba(102, 255, 0, 0.55)",   # Yellow-Green
+        "rgba(204, 255, 0, 0.55)",   # Lime-Yellow
+        "rgba(255, 255, 0, 0.55)",   # Yellow
+        "rgba(255, 204, 0, 0.55)",   # Orange-Yellow
+        "rgba(255, 102, 0, 0.55)",   # Orange
+        "rgba(255, 51, 0, 0.55)",    # Orange-Red
+        "rgba(255, 0, 0, 0.55)"      # Red
+    ]
+
+    fig = go.Figure()
+
+    cluster_ids = sorted(district_agg["cluster"].unique())
+    num_clusters = len(cluster_ids)
+    color_map = green_to_red_8[:num_clusters]
+
+    for idx, cluster in enumerate(cluster_ids):
+        cluster_data = district_agg[district_agg["cluster"] == cluster]
+
+        fig.add_trace(
+            go.Scattermapbox(
+                lat=cluster_data["Latitude"],
+                lon=cluster_data["Longitude"],
+                mode="markers",
+                marker=dict(
+                    size=np.log1p(cluster_data["total_ipc_crimes"]) * 4,
+                    color=color_map[idx],
+                    opacity=0.7,
+                    sizemode="diameter",
+                ),
+                text=cluster_data["district"],
+                customdata=np.column_stack(
+                    [
+                        cluster_data["district"],
+                        cluster_data["state_ut"],
+                        cluster_data["total_ipc_crimes"],
+                        cluster_data["murder"],
+                        cluster_data["rape"],
+                        cluster_data["robbery"],
+                    ]
+                ),
+                hovertemplate=(
+                    "<b>%{customdata[0]}</b><br>"
+                    "<b>State:</b> %{customdata[1]}<br>"
+                    "<b>Total Crimes:</b> %{customdata[2]:,.0f}<br>"
+                    "Murder: %{customdata[3]:,.0f}<br>"
+                    "Rape: %{customdata[4]:,.0f}<br>"
+                    "Robbery: %{customdata[5]:,.0f}<br>"
+                    "<extra></extra>"
+                ),
+                name=f"Cluster {cluster}",
+                showlegend=True,
+            )
+        )
+
+    fig.update_layout(
         mapbox=dict(
-            style='carto-positron',  # Clean light background like reference
+            style="carto-positron",
             center=dict(lat=22.5, lon=82.5),
-            zoom=4,
-            bearing=0,
-            pitch=0
+            zoom=4.2,
         ),
-        showlegend=True,
-        legend=dict(
-            x=0.02,
-            y=0.98,
-            bgcolor='rgba(255, 255, 255, 0.95)',
-            bordercolor='rgba(150, 150, 150, 0.5)',
-            borderwidth=1,
-            font=dict(size=11, color='#333333')
-        ),
-        height=800,
-        margin=dict(l=0, r=0, t=30, b=0),
-        paper_bgcolor='#F8F8F8',
-        font=dict(family='Arial', color='#333333')
+        height=700,
+        margin=dict(l=0, r=0, t=40, b=0),
+        legend=dict(title="Cluster", font=dict(size=12)),
+        paper_bgcolor="#f5f5f5",
     )
-    
-    st.plotly_chart(fig_bubble, use_container_width=True)
-    
-    # Interactive instructions
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.info("🔍 **Zoom In** - Scroll or pinch to zoom to district level")
-    with col2:
-        st.info("🎈 **Bubble Size** - Larger bubbles = higher crime volume")
-    with col3:
-        st.info("🎨 **Colors** - Cluster intensity (green to red)")
-    with col4:
-        st.info("🖱️ **Hover** - See district details | **Drag** to pan")
-    
-    # Cluster Distribution Summary
-    with st.expander("📊 View Cluster Distribution Summary"):
-        cluster_counts = clusters_df["cluster_description"].value_counts().reset_index()
-        cluster_counts.columns = ["Cluster", "Number of States"]
-        
-        fig_dist = px.bar(
-            cluster_counts,
-            x="Cluster",
-            y="Number of States",
-            color="Cluster",
-            title="Number of States per Cluster",
-            color_discrete_sequence=px.colors.qualitative.Set2
-        )
-        
-        st.plotly_chart(fig_dist, use_container_width=True)
-    
-    # Cluster Centroids Comparison
-    st.subheader("🎯 Cluster Centroids Comparison")
-    
-    if kmeans_info:
-        # Get original scale centroids
-        centroids_scaled = kmeans_info["cluster_centers"]
-        scaler = kmeans_info["scaler"]
-        centroids_original = scaler.inverse_transform(centroids_scaled)
-        
-        # Create dataframe
-        centroid_df = pd.DataFrame(
-            centroids_original,
-            columns=["Total IPC Crimes", "Women Crimes", "Children Crimes"]
-        )
-        centroid_df["Cluster"] = [f"Cluster {i}" for i in range(len(centroid_df))]
-        
-        # Melt for plotting
-        centroid_melted = centroid_df.melt(
-            id_vars="Cluster",
-            var_name="Crime Type",
-            value_name="Average Value"
-        )
-        
-        fig_centroids = px.bar(
-            centroid_melted,
-            x="Cluster",
-            y="Average Value",
-            color="Crime Type",
-            barmode="group",
-            title="Average Crime Statistics by Cluster",
-            color_discrete_sequence=px.colors.qualitative.Pastel
-        )
-        
-        st.plotly_chart(fig_centroids, use_container_width=True)
-        
-        # Model Metrics
-        with st.expander("📈 View Clustering Metrics"):
-            st.write(f"**Silhouette Score:** {kmeans_info['silhouette_score']:.3f}")
-            st.write(f"**Inertia:** {kmeans_info['inertia']:.2f}")
-            st.write(f"**Number of Clusters:** {len(centroid_df)}")
-    
-    # Full data table
-    with st.expander("📋 View All States"):
-        display_df = clusters_df[[
-            "state_ut", "cluster", "cluster_description",
-            "total_ipc_crimes", "total_women_crimes", "total_children_crimes"
-        ]].sort_values("total_ipc_crimes", ascending=False)
-        
-        st.dataframe(display_df, use_container_width=True, height=400)
 
+    st.plotly_chart(fig, use_container_width=True)
+
+    # ------------------------------------------------------------------
+    # 7. Data Table
+    # ------------------------------------------------------------------
+    st.subheader("Clustered District Data Table")
+    st.dataframe(district_agg, use_container_width=True)
+
+    # ------------------------------------------------------------------
+    # 8. Download Option
+    # ------------------------------------------------------------------
+    st.download_button(
+        "Download Clustered Data as CSV",
+        district_agg.to_csv(index=False),
+        "district_clusters.csv",
+    )
 
 # ========================
 # Main App
@@ -932,7 +909,12 @@ def main():
     # Tab selection
     tab_selection = st.sidebar.radio(
         "Select Analysis:",
-        ["📈 Overview (IPC)", "👩 Women Crime", "👶 Children Crime", "🗺️ Area Pattern"]
+        [
+            "📈 Overview (IPC)",
+            "👩 Women Crime",
+            "👶 Children Crime",
+            "🗺️ Area Pattern",
+        ]
     )
     
     st.sidebar.markdown("---")
@@ -958,7 +940,8 @@ def main():
     elif tab_selection == "👶 Children Crime":
         tab_children_crime()
     elif tab_selection == "🗺️ Area Pattern":
-        tab_area_pattern()
+        area_tab_pattern()
+
 
 
 if __name__ == "__main__":
